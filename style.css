@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}
+
+.header {
+    margin-left: 100px;
+    background-color: rgb(104, 170, 233);
+    color: black;
+}
