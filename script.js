@@ -20,7 +20,31 @@ function computerPlay() {
 let computerChoice = computerPlay();
 let compCharLength = computerChoice.length; //get String length to determine selection without case-sensitivity
 
-let userChoice = "Rock";
+let userChoice = prompt();
 let userCharLength = userChoice.length; //get String length to determine selection without case-sensitivity
 
-console.log(userCharLength);
+let winnermessage = "";
+if (((compCharLength == 4) && (userCharLength == 5)) || ((compCharLength == 5) && (userCharLength == 8)) | ((compCharLength == 8) && (userCharLength == 4))) {
+    winnermessage = "You Win! " + userChoice + " beats " + computerChoice;
+}
+else if (((compCharLength == 5) && (userCharLength == 4)) || ((compCharLength == 8) && (userCharLength == 5)) | ((compCharLength == 4) && (userCharLength == 8))) {
+    winnermessage = "You Lose! " + computerChoice + " beats " + userChoice;
+}
+else {
+    winnermessage = "You Tied!"
+}
+
+let yourscore = 0;
+let compscore = 0;
+if (winnermessage.charAt(4) == "W") {
+    yourscore = yourscore + 1;
+} else if (winnermessage.charAt(4) == "L") {
+    compscore = compscore + 1;
+} else {
+    yourscore = yourscore;
+    compscore = compscore;
+}
+
+console.log(winnermessage);
+console.log(yourscore);
+console.log(compscore);
