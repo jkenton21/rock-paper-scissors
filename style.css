@@ -1,11 +1,58 @@
+/*Styles.css*/
+
 body {
     display: flex;
     flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
     background-color: grey;
+    color: #fff;
 }
 
 .header {
-    margin-left: 100px;
     background-color: rgb(104, 170, 233);
     color: black;
+}
+
+.container {
+    display: flex;
+    width: 30vw;
+    justify-content: space-evenly;
+    top: 100px;
+    z-index: 1;
+}
+
+.p-count, .c-count {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.choice {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.rock, .paper, .scissors {
+    padding: 2px;
+    width: 100px;
+    border-radius: 10px;
+    background: white;
+    outline: none;
+    border-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.restart {
+    padding: 2px;
+    width: 100px;
+    border-radius: 10px;
+    background: white;
+    outline: none;
+    border-color: white;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
 }
