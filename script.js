@@ -3,48 +3,133 @@
 // computerPlay function will return random string when it computes
 // random string possibilities: "Rock", "Paper", "Scissors"
 
-function computerPlay() {
-        let compChoice = Math.random(); //random number 0 - 1.00
+// Complete logic of game inside this function
+const game = () => {
+    let playerScore = 0;
+    let computerScore = 0;
+    let moves = 0;
+ 
+ 
+    // Function to
+    const playGame = () => {
+        const rockBtn = document.querySelector('.rock');
+        const paperBtn = document.querySelector('.paper');
+        const scissorBtn = document.querySelector('.scissors');
+        const playerOptions = [rockBtn,paperBtn,scissorBtn];
+        const computerOptions = ['rock','paper','scissors']
+         
+        // Function to start playing game
+        playerOptions.forEach(option => {
+            option.addEventListener('click',function(){
+ 
+                const movesLeft = document.querySelector('.roundsLeft');
+                moves++;
+                movesLeft.innerText = `Rounds Left: ${5-moves}`;
+                 
+ 
+                const choiceNumber = Math.floor(Math.random()*3);
+                const computerChoice = computerOptions[choiceNumber];
+ 
+                // Function to check who wins
+                winner(this.innerText,computerChoice)
+                 
+                // Calling gameOver function after 10 moves
+                if(moves == 5){
+                    gameOver(playerOptions,movesLeft);
+                }
+            })
+        })
+         
+    }
 
-        if (compChoice < .34) {
-            compChoice = "ROCK";
-        } else if (compChoice <= .67) {
-            compChoice = "PAPER"
-        } else {
-            compChoice = "SCISSORS"
-        };
+     // Function to decide winner
+     const winner = (player,computer) => {
+        const result = document.querySelector('.result');
+        const playerScoreBoard = document.querySelector('.p-count');
+        const computerScoreBoard = document.querySelector('.c-count');
+        player = player.toLowerCase();
+        computer = computer.toLowerCase();
+        if(player === computer){
+            result.textContent = 'Tie'
+        }
+        else if(player == 'rock'){
+            if(computer == 'paper'){
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+ 
+            }else{
+                result.textContent = 'Player Won'
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
+        else if(player == 'scissors'){
+            if(computer == 'rock'){
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+            }else{
+                result.textContent = 'Player Won';
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
+        else if(player == 'paper'){
+            if(computer == 'scissors'){
+                result.textContent = 'Computer Won';
+                computerScore++;
+                computerScoreBoard.textContent = computerScore;
+            }else{
+                result.textContent = 'Player Won';
+                playerScore++;
+                playerScoreBoard.textContent = playerScore;
+            }
+        }
+    }
 
-        return(compChoice); //returns computer selection
-} 
-
-let computerChoice = computerPlay();
-let compCharLength = computerChoice.length; //get String length to determine selection without case-sensitivity
-
-let userChoice = prompt();
-let userCharLength = userChoice.length; //get String length to determine selection without case-sensitivity
-
-let winnermessage = "";
-if (((compCharLength == 4) && (userCharLength == 5)) || ((compCharLength == 5) && (userCharLength == 8)) | ((compCharLength == 8) && (userCharLength == 4))) {
-    winnermessage = "You Win! " + userChoice + " beats " + computerChoice;
+    // Function to run when game is over
+    const gameOver = (playerOptions,movesLeft) => {
+ 
+        const chooseMove = document.querySelector('.choice');
+        const result = document.querySelector('.result');
+        const reloadBtn = document.querySelector('.restart');
+ 
+        playerOptions.forEach(option => {
+            option.style.display = 'none';
+        })
+ 
+      
+        chooseMove.innerText = 'Game Over!!'
+        movesLeft.style.display = 'none';
+ 
+        if(playerScore > computerScore){
+            result.style.fontSize = '2rem';
+            result.innerText = 'You Won The Game'
+            result.style.color = '#308D46';
+        }
+        else if(playerScore < computerScore){
+            result.style.fontSize = '2rem';
+            result.innerText = 'You Lost The Game';
+            result.style.color = 'red';
+        }
+        else{
+            result.style.fontSize = '2rem';
+            result.innerText = 'Tie';
+            result.style.color = 'grey'
+        }
+        reloadBtn.innerText = 'Restart';
+        reloadBtn.style.display = 'flex'
+        reloadBtn.addEventListener('click',() => {
+            window.location.reload();
+        })
+    }
+ 
+ 
+    // Calling playGame function inside game
+    playGame();
+     
 }
-else if (((compCharLength == 5) && (userCharLength == 4)) || ((compCharLength == 8) && (userCharLength == 5)) | ((compCharLength == 4) && (userCharLength == 8))) {
-    winnermessage = "You Lose! " + computerChoice + " beats " + userChoice;
-}
-else {
-    winnermessage = "You Tied!"
-}
-
-let yourscore = 0;
-let compscore = 0;
-if (winnermessage.charAt(4) == "W") {
-    yourscore = yourscore + 1;
-} else if (winnermessage.charAt(4) == "L") {
-    compscore = compscore + 1;
-} else {
-    yourscore = yourscore;
-    compscore = compscore;
-}
-
-console.log(winnermessage);
-console.log(yourscore);
-console.log(compscore);
+ 
+// Calling the game function
+game();
