@@ -5,21 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
-    <style src="style.css"></style>
+    <link rel="stylesheet" href="style.css">
     <title>Odin Rock Paper Scissors</title>
 </head>
 <body>
+<!-- Tital for the game-->
     <div class="header">
       <h1>Rock, Paper, Scissors</h1>
       <p>Let's see if you can beat the computer...</p>
     </div>
-
+<!-- Display the scores-->
     <div class ="container">
 
+      <div class="userScore">
+        <h2>Player</h2>
+        <p class="p-count count">0</p>
+      </div>
+
+      <div class="computerScore">
+        <h2>Computer</h2>
+        <p class="c-count count">0</p>
+      </div>
     </div>
+<!-- Make you choice -->
+    <div class="choice">Pick your choice</div>
+
+    <div class="roundsLeft">Rounds Left: 5</div>
+
+    <div class="options">
+      <button class="rock">Rock</button>
+      <button class="paper">Paper</button>
+      <button class="scissors">Scissors</button>
+    </div>
+<!-- Show Results and restart game-->
+    <div class="result"></div>
 
     <div class="footer">
-
+      <button class="restart"></button>
     </div>
 </body>
 </html>
